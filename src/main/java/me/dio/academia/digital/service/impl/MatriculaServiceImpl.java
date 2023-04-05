@@ -5,9 +5,11 @@ import me.dio.academia.digital.entity.form.MatriculaForm;
 import me.dio.academia.digital.repository.MatriculaRepository;
 import me.dio.academia.digital.service.IMatriculaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MatriculaServiceImpl implements IMatriculaService {
 
     @Autowired
@@ -24,14 +26,8 @@ public class MatriculaServiceImpl implements IMatriculaService {
     }
 
     @Override
-    public List<Matricula> getAll(String bairro) {
-
-        if(bairro == null) {
-            return matriculaRepository.findAll();
-        } else {
-            return matriculaRepository.findByAlunoBairro(bairro);
-        }
-
+    public List<Matricula> getAll() {
+        return null;
     }
 
     @Override

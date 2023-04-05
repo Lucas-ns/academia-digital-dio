@@ -3,6 +3,7 @@ package me.dio.academia.digital.controller;
 import me.dio.academia.digital.entity.Aluno;
 import me.dio.academia.digital.entity.AvaliacaoFisica;
 import me.dio.academia.digital.entity.form.AlunoForm;
+import me.dio.academia.digital.entity.form.AlunoUpdateForm;
 import me.dio.academia.digital.service.impl.AlunoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +28,24 @@ public class AlunoController {
         return service.getAllAvaliacaoFisicaId(id);
     }
 
+//    @GetMapping
+//    public List<Aluno> getAll(@RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento) {
+//        return service.findByDataDeNascimento(dataDeNascimento);
+//    }
+
     @GetMapping
-    public List<Aluno> getAll(@RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento) {
-        return service.findByDataDeNascimento(dataDeNascimento);
+    public List<Aluno> getAlunoPorBairro(@RequestParam(value = "bairro", required = false) String bairro) {
+        return service.findByBairro(bairro);
+    }
+
+    @PutMapping("/{id}")
+    public Aluno update(@PathVariable Long id, @RequestBody AlunoUpdateForm form) {
+        return service.update(id, form);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
 
 }

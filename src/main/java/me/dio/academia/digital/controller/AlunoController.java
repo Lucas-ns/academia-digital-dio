@@ -17,11 +17,6 @@ public class AlunoController {
     @Autowired
     private AlunoServiceImpl service;
 
-    @GetMapping
-    public List<Aluno> getAll() {
-        return service.getAll();
-    }
-
     @PostMapping
     public Aluno create(@Valid @RequestBody AlunoForm form) {
         return service.create(form);
@@ -30,6 +25,11 @@ public class AlunoController {
     @GetMapping("/avaliacoes/{id}")
     public List<AvaliacaoFisica> getAllAvaliacaoFisicaId(@PathVariable Long id) {
         return service.getAllAvaliacaoFisicaId(id);
+    }
+
+    @GetMapping
+    public List<Aluno> getAll(@RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento) {
+        return service.findByDataDeNascimento(dataDeNascimento);
     }
 
 }
